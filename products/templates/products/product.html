@@ -1,0 +1,32 @@
+ <h2> Create Company </h2>
+ <form action="{% url 'create_products' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p}}
+
+        <button type="submit" >Create</button>
+ </form>
+
+ <br>
+
+ <h2> List Products </h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.photo}}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
