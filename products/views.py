@@ -32,3 +32,12 @@ def update_product(request, id):
             return redirect('list_products')
     else:
         return render(request, 'products/update_product.html',  data)
+
+
+def delete_product(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('list_products')
+    else:
+        return render(request, 'products/delete_confirm.html', {'obj': product})

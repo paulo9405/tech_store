@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Are you sure you want to delete: {{obj}}?</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'list_products'%}" class="btn btn-info">Return to list products</a>
+        </form>
+{% endblock %}
