@@ -17,3 +17,18 @@ def list_products(request):
     form = ProductForm()
     data = {'products': products, 'form': form}
     return render(request, 'products/product.html', data)
+
+
+def update_product(request, id):
+    data = {}
+    product = Product.objects.get(id=id)
+    form = ProductForm(request.POST or None, instance=product)
+    data['product'] = product
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('list_products')
+    else:
+        return render(request, 'products/update_product.html',  data)

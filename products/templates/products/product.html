@@ -1,11 +1,14 @@
- <h2> Create Company </h2>
- <form action="{% url 'create_products' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+{% extends "base.html" %}
 
-        {{ form.as_p}}
+{% block main %}
+    <h2> Create Product </h2>
+     <form action="{% url 'create_products' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <button type="submit" >Create</button>
- </form>
+            {{ form.as_p}}
+
+            <button type="submit" >Create</button>
+     </form>
 
  <br>
 
@@ -25,8 +28,17 @@
                         <td>{{product.name}}</td>
                         <td>{{product.price}}</td>
                         <td>{{product.photo}}</td>
+                        <td>
+                            <a href="{% url 'update_product' product.id %}">Edit</a>
+                        </td>
 
                     </tr>
                 {% endfor %}
+
             </tbody>
         </table>
+
+
+
+
+{% endblock %}
